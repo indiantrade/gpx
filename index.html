@@ -1,155 +1,522 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Intraday Bulls</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    font-family:'Roboto',Arial,sans-serif;
-    background:#0d0d0d;
-    color:#fff;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));
-  }
-  .container{
-    width:100%;
-    max-width:480px;
-    background:#111827;
-    border:2px solid #d4b800;
-    border-radius:clamp(28px,9vw,50px);
-    box-shadow:0 0 18px rgba(212,184,0,.55), inset 0 0 12px rgba(212,184,0,.15);
-    padding:clamp(18px,5vw,30px) clamp(12px,4vw,18px) clamp(24px,6vw,40px);
-  }
-  .name{
-    border:1px solid #6b7280;
-    text-align:center;
-    font-size:clamp(19px,5.6vw,24px);
-    font-weight:500;
-    padding:10px 8px;
-    color:#f3f4f6;
-    word-break:break-word;
-  }
-  .avatar{
-    width:clamp(130px,42vw,175px);
-    height:clamp(130px,42vw,175px);
-    border-radius:50%;
-    border:3px solid #a8c400;
-    margin:clamp(26px,8vw,42px) auto clamp(34px,10vw,60px);
-    overflow:hidden;
-    display:block;
-  }
-  .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-  .card{
-    background:#1b2045;
-    border:1px solid #5b6178;
-    box-shadow:0 0 10px rgba(200,200,220,.35);
-    padding:clamp(12px,3.5vw,16px) clamp(10px,3vw,14px);
-    display:flex;
-    align-items:flex-start;
-    gap:clamp(10px,3vw,14px);
-  }
-  .icon{
-    flex:0 0 clamp(46px,13vw,58px);
-    width:clamp(46px,13vw,58px);
-    height:clamp(46px,13vw,58px);
-    border:3px solid #fff;
-    border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    font-size:clamp(20px,6vw,26px);
-    margin-top:4px;
-  }
-  .card h3{font-size:clamp(16px,4.8vw,21px);font-weight:700;line-height:1.25;color:#fff}
-  .card p{font-size:clamp(14px,4vw,17px);font-weight:300;color:#c9ccd8;line-height:1.6;margin-top:6px}
-  .btn-wrap{text-align:center;margin:clamp(24px,7vw,36px) 0 clamp(30px,9vw,48px);padding:0 6px}
-  .btn{
-    display:flex;align-items:center;justify-content:center;gap:10px;
-    width:100%;
-    max-width:340px;
-    margin:0 auto;
-    background:#0069d9;
-    color:#fff;
-    text-decoration:none;
-    font-weight:700;
-    font-size:clamp(17px,5vw,23px);
-    padding:clamp(14px,4vw,18px) 16px;
-    min-height:56px;
-    border:3px dotted #fff;
-    border-radius:14px;
-    box-shadow:0 0 12px rgba(212,184,0,.9);
-    animation:pulse 1.6s infinite;
-    white-space:nowrap;
-  }
-  .btn:active{transform:scale(.97)}
-  .btn svg{width:clamp(24px,7vw,30px);height:clamp(24px,7vw,30px);flex:0 0 auto}
-  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
-  .gap{height:clamp(24px,7vw,40px)}
-  .disclaimer{
-    text-align:center;
-    font-size:clamp(11.5px,3.3vw,13px);
-    line-height:1.65;
-    color:#e5e7eb;
-    margin-top:clamp(20px,6vw,28px);
-    padding:0 4px;
-  }
-  @media (prefers-reduced-motion:reduce){.btn{animation:none}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>TRADE WITH GAUTAM — Official Market Learning Community</title>
+  <meta name="description" content="Join TRADE WITH GAUTAM on Telegram for daily Nifty, BankNifty price action education, risk management, and chart breakdowns." />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --bg-dark: #070b14;
+      --bg-card: rgba(16, 24, 41, 0.78);
+      --border-glass: rgba(255, 255, 255, 0.09);
+      --gold: #f5b942;
+      --gold-soft: rgba(245, 185, 66, 0.16);
+      --tg-blue: #229ed9;
+      --tg-blue-dark: #1682b8;
+      --emerald: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(34, 158, 217, 0.15) 0%, transparent 52%),
+        radial-gradient(circle at 85% 25%, rgba(245, 185, 66, 0.09) 0%, transparent 45%);
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 16px 14px 28px;
+    }
+
+    /* Hero Glass Card */
+    .hero-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-glass);
+      border-radius: 22px;
+      padding: 24px 18px 22px;
+      text-align: center;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
+    }
+
+    .badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.32);
+      color: #6ee7b7;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 8px var(--emerald);
+    }
+
+    .logo-wrap {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, var(--gold), var(--tg-blue));
+      box-shadow: 0 0 26px rgba(245, 185, 66, 0.25);
+    }
+
+    .logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+      background: #0f172a;
+    }
+
+    .channel-title {
+      font-size: clamp(21px, 5.8vw, 26px);
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      font-size: clamp(13.5px, 3.8vw, 15px);
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .hero-sub {
+      font-size: clamp(13px, 3.6vw, 14px);
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      padding: 0 4px;
+    }
+
+    /* Single Primary Telegram CTA Button */
+    .cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 54px;
+      padding: 14px 18px;
+      background: linear-gradient(135deg, var(--tg-blue) 0%, var(--tg-blue-dark) 100%);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: clamp(15px, 4.2vw, 16.5px);
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 10px 26px rgba(34, 158, 217, 0.38);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .cta-btn:active {
+      transform: scale(0.98);
+    }
+
+    .cta-btn svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      fill: currentColor;
+    }
+
+    .cta-note {
+      margin-top: 10px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    /* Stats Strip */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .stat-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 14px;
+      padding: 12px 6px;
+      text-align: center;
+    }
+
+    .stat-val {
+      font-size: clamp(15px, 4.2vw, 17px);
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .stat-lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Features Section */
+    .section-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 18px;
+      padding: 18px 16px;
+      margin-top: 14px;
+    }
+
+    .section-heading {
+      font-size: clamp(15.5px, 4.3vw, 17px);
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 11px 12px;
+    }
+
+    .check-badge {
+      width: 22px;
+      height: 22px;
+      border-radius: 7px;
+      background: var(--gold-soft);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .feature-text strong {
+      display: block;
+      font-size: 13.5px;
+      color: #f1f5f9;
+      margin-bottom: 2px;
+    }
+
+    .feature-text span {
+      display: block;
+      font-size: 12.2px;
+      color: var(--text-muted);
+      line-height: 1.42;
+    }
+
+    /* Compliance & Footer */
+    .disclaimer-box {
+      margin-top: 14px;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 14px;
+      padding: 14px;
+      font-size: 11.2px;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    .disclaimer-box strong {
+      color: #cbd5e1;
+    }
+
+    .legal-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .legal-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 12px;
+      text-decoration: underline;
+      cursor: pointer;
+      min-height: 36px;
+      padding: 4px 6px;
+    }
+
+    .agency-credit {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .agency-credit a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 7, 18, 0.82);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 18px;
+      width: 100%;
+      max-width: 440px;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .modal-header h3 {
+      font-size: 15px;
+      color: #ffffff;
+    }
+
+    .modal-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      padding: 16px;
+      overflow-y: auto;
+      font-size: 12.5px;
+      color: #cbd5e1;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 480px) {
+      .modal-overlay {
+        align-items: flex-end;
+        padding: 0;
+      }
+      .modal-box {
+        border-radius: 20px 20px 0 0;
+        max-height: 78vh;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
 
-    <div class="name">Intraday Bulls</div>
-
-    <div class="avatar">
-      <img src="https://i.ibb.co/Kxy5sCht/In-Shot-20261112-003926626.jpg" alt="Intraday Bulls">
-    </div>
-
-    <div class="card">
-      <div class="icon">📊</div>
-      <div>
-        <h3>Market Insights &amp; Analysis</h3>
-        <p>Real-time market updates and expert discussions</p>
+  <main class="container">
+    <!-- Hero Card (Single Telegram CTA Button) -->
+    <section class="hero-card">
+      <div class="badge-live">
+        <span class="pulse-dot"></span>
+        <span>Official Learning Community</span>
       </div>
-    </div>
 
-    <div class="btn-wrap">
-      <a class="btn" href="https://t.me/+-VrsSbPb6uFlZjll" target="_blank" rel="noopener">
-        <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="120" cy="120" r="120" fill="#fff"/>
-          <path fill="#0069d9" d="M54 118l115-47c5-2 10 1 8 9l-20 93c-1 7-6 9-12 5l-30-22-14 14c-2 2-3 3-6 3l2-31 56-51c3-2-1-4-4-2l-69 44-30-9c-6-2-6-6 2-9z"/>
+      <div class="logo-wrap">
+        <img src="https://iili.io/odUUNrg.jpg" alt="TRADE WITH GAUTAM Logo" loading="eager" />
+      </div>
+
+      <h1 class="channel-title">TRADE WITH GAUTAM</h1>
+      <p class="tagline">Price Action • Chart Structure • Risk Management</p>
+      <p class="hero-sub">
+        Nifty, BankNifty aur Index Market ke technical levels, chart setups aur disciplined trading psychology seekhne ke liye official Telegram channel join karein.
+      </p>
+
+      <!-- ONLY ONE TELEGRAM CTA BUTTON -->
+      <a href="https://t.me/+dCzl69ROXj4wMWVl" class="cta-btn" id="primary-telegram-cta" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
         </svg>
-        JOIN NOW TELEGRAM
+        <span>JOIN FREE TELEGRAM CHANNEL</span>
       </a>
-    </div>
 
-    <div class="card">
-      <div class="icon">📚</div>
-      <div>
-        <h3>Learn Trading Strategies</h3>
-        <p>Investment | Share Market | Trading guidance</p>
+      <p class="cta-note">100% Free Educational Updates • Instant Telegram Access</p>
+    </section>
+
+    <!-- Highlights Strip -->
+    <section class="stats-grid" aria-label="Community Highlights">
+      <div class="stat-box">
+        <div class="stat-val">Daily</div>
+        <div class="stat-lbl">Chart Analysis</div>
       </div>
-    </div>
-
-    <div class="gap"></div>
-
-    <div class="card">
-      <div class="icon">🛡️</div>
-      <div>
-        <h3>Practical Tips &amp; Tricks</h3>
-        <p>Actionable strategies and proven methods</p>
+      <div class="stat-box">
+        <div class="stat-val">100%</div>
+        <div class="stat-lbl">Educational</div>
       </div>
+      <div class="stat-box">
+        <div class="stat-val">Free</div>
+        <div class="stat-lbl">Community Access</div>
+      </div>
+    </section>
+
+    <!-- Educational Breakdown -->
+    <section class="section-card">
+      <h2 class="section-heading">📊 Channel Par Kya Seekhne Ko Milega?</h2>
+      <ul class="feature-list">
+        <li class="feature-item">
+          <div class="check-badge">✓</div>
+          <div class="feature-text">
+            <strong>Nifty &amp; BankNifty Chart Breakdown</strong>
+            <span>Important support, resistance aur price action zones ki educational study.</span>
+          </div>
+        </li>
+        <li class="feature-item">
+          <div class="check-badge">✓</div>
+          <div class="feature-text">
+            <strong>Risk Management &amp; Capital Protection</strong>
+            <span>Position sizing aur stop-loss discipline ke practical rules.</span>
+          </div>
+        </li>
+        <li class="feature-item">
+          <div class="check-badge">✓</div>
+          <div class="feature-text">
+            <strong>Market Structure &amp; Trend Logic</strong>
+            <span>Live market sessions ke dauran trend aur volume behavior samajhne ki guide.</span>
+          </div>
+        </li>
+        <li class="feature-item">
+          <div class="check-badge">✓</div>
+          <div class="feature-text">
+            <strong>Beginner-Friendly Learning</strong>
+            <span>Simple Hinglish language mein step-by-step technical analysis concepts.</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Meta Ads & SEBI Risk Disclaimer -->
+    <footer class="disclaimer-box">
+      <p>
+        <strong>Educational Disclaimer:</strong> TRADE WITH GAUTAM sirf educational aur informational purposes ke liye hai. Hum SEBI-registered investment advisor ya research analyst nahi hain. Yahan share ki jaane wali kisi bhi chart study ko buy/sell recommendation ya guaranteed return ka vaada na samjhein. Stock market investments market risks ke adheen hain; kisi bhi financial decision se pehle apne certified financial advisor se salah zaroor lein.
+      </p>
+
+      <div class="legal-links">
+        <button type="button" class="legal-btn" onclick="openModal('privacy')">Privacy Policy</button>
+        <button type="button" class="legal-btn" onclick="openModal('terms')">Terms of Service</button>
+      </div>
+
+      <div class="agency-credit">
+        Promoted By <a href="https://t.me/+3XoqJNLxYHswNTc1" target="_blank" rel="noopener noreferrer">AD BUILD AGENCY</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Legal Modal -->
+  <div class="modal-overlay" id="legalModal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <h3 id="modalTitle">Privacy Policy</h3>
+        <button type="button" class="modal-close" onclick="closeModal()" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modalContent"></div>
     </div>
-
-    <p class="disclaimer">
-      Disclaimer: This content is for educational purposes only and does not constitute financial advice. Trading involves risk. Please do your own research before making investment decisions.
-    </p>
-
   </div>
+
+  <script>
+    const legalData = {
+      privacy: {
+        title: "Privacy Policy",
+        body: "We respect your privacy. This landing page provides educational information about TRADE WITH GAUTAM and redirects visitors to Telegram upon clicking the join button. We do not collect or sell sensitive personal financial data to third parties."
+      },
+      terms: {
+        title: "Terms of Service",
+        body: "All content shared on this webpage and inside the TRADE WITH GAUTAM Telegram channel is strictly for educational purposes. Nothing shared constitutes financial, legal, or investment advice. Users are solely responsible for their own trading and investment decisions."
+      }
+    };
+
+    function openModal(type) {
+      const modal = document.getElementById("legalModal");
+      document.getElementById("modalTitle").textContent = legalData[type].title;
+      document.getElementById("modalContent").textContent = legalData[type].body;
+      modal.classList.add("active");
+    }
+
+    function closeModal() {
+      document.getElementById("legalModal").classList.remove("active");
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === "legalModal") closeModal();
+    }
+  </script>
 </body>
+ 
 </html>
